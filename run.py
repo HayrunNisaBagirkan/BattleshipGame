@@ -117,8 +117,8 @@ def play_game(player_name):
             random.randint(0, player_board.size - 1)
             )
 
-        player_result = player_board.mark_board(computer_guess, computer_board, player_name)
-        computer_result = computer_board.mark_board(player_guess, player_board, "Computer")
+        player_result = player_board.mark_board(player_guess, computer_board, player_name)
+        computer_result = computer_board.mark_board(computer_guess, player_board, "Computer")
 
         if player_result == "*" and computer_result == "*":
             player_score += 1

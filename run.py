@@ -1,12 +1,10 @@
 from random import randint
 
 # Board class
-
-
 class Board:
     def __init__(self, size, ship_sizes):
         self.size = size  # The size of the game board (10*10).
-        self.ship_sizes = ship_sizes  # Ship names and their sizes.
+        self.ship_sizes = ship_sizes  # A dictionary of ship names and their sizes.
         self.guesses = []  # List to store made guesses.
         self.ships = []  # List to store ship locations and types.
 
@@ -59,14 +57,14 @@ class Board:
                 if 0 <= row < self.size and 0 <= col < self.size:
                     guess = (row, col)
                     if guess in self.guesses:
-                        print("You've already guessed this. Try again.")
+                        print("You've already guessed this position. Try again.")
                     else:
                         self.guesses.append(guess)
                         return guess
                 else:
-                    print(f"Enter valid coordinates (0-{self.size - 1}).")
+                    print(f"Please enter valid coordinates (0-{self.size - 1}).")
             except ValueError:
-                print(f"Enter numbers for row and column (0-{self.size - 1}).")
+                print(f"Please enter numbers for row and column (0-{self.size - 1}).")
 
     # Result of an attack on the board
     def mark_board(self, guess, opponent_board, player_name):
@@ -83,7 +81,7 @@ def player_setup(player_name):
     # The size of the game board is set to 10x10.
     size = 10
     # Dictionary of ship names and sizes.
-    ship_sizes = {'Crrr': 5, 'Bttlshp': 4, 'Crsr': 3, 'Sbmrn': 3, 'Dstryr': 2}
+    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
     player_board = Board(size, ship_sizes)
 
     # Player sets up their own ships manually.
@@ -97,7 +95,7 @@ def computer_setup():
     # The size of the game board is set to 10x10.
     size = 10
     # Dictionary of ship names and sizes.
-    ship_sizes = {'Crrr': 5, 'Bttlshp': 4, 'Crsr': 3, 'Sbmrn': 3, 'Dstryr': 2}
+    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
     computer_board = Board(size, ship_sizes)
 
     computer_board.populate_board()
@@ -114,10 +112,10 @@ def play_game(player_name):
 
     for _ in range(sum(player_board.ship_sizes.values())):
         player_guess = player_board.make_guess()
-        computer_guess = (
-            random.randint(0, player_board.size - 1),
-            random.randint(0, player_board.size - 1)
-            )
+        computer_guess = (random.randint(0, player_board.size - 1), random.randint(0, player_board.size - 1))
+
+        player_result = player_board.mark_board(computer_guess, computer_board, player_name)
+        computer_result = computer_board.mark_board(player_guess, player_board, "Computer")
 
         if player_result == "*" and computer_result == "*":
             player_score += 1

@@ -2,8 +2,15 @@ import random
 
 # Board class
 # Game board and functions
+class Board:
+    def __init__(self, size, ship_sizes):
+        self.size = size #The size of the game board.
+        self.ship_sizes = ship_sizes # A dictionary of ship names and their sizes.
+        self.guesses = [] # List to store made guesses.
+        self.ships = [] #  Dictionary to store ship locations and types.
 
 # Populates the boards wıth player'ss ships
+
 
 # Check if ships overlap
 

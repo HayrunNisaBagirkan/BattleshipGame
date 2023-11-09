@@ -1,4 +1,4 @@
-from random import randint
+import random
 
 # Board class
 class Board:
@@ -112,7 +112,10 @@ def play_game(player_name):
 
     for _ in range(sum(player_board.ship_sizes.values())):
         player_guess = player_board.make_guess()
-        computer_guess = (random.randint(0, player_board.size - 1), random.randint(0, player_board.size - 1))
+        computer_guess = (
+            random.randint(0, player_board.size - 1),
+            random.randint(0, player_board.size - 1)
+            )
 
         player_result = player_board.mark_board(computer_guess, computer_board, player_name)
         computer_result = computer_board.mark_board(player_guess, player_board, "Computer")
@@ -131,7 +134,6 @@ def new_game(player_name):
         play_again = input("Do you want to play again? (yes/no): ")
         if play_again.lower() != "yes":
             break
-
 
 if __name__ == "__main__":
     print("Welcome!")

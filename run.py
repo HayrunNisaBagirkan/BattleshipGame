@@ -37,7 +37,6 @@ class Board:
                     self.place_ship(ship, ship_coords, size, is_vertical)
                     break
 
-
     # Check if ships overlap
     def has_overlap(self, ship_coords, size, is_vertical):
         if is_vertical:
@@ -52,12 +51,13 @@ class Board:
 
     # Places a ship on the board
     def place_ship(self, ship, ship_coords, size, is_vertical):
+        ship_info = {'name': ship, 'size': size}
         if is_vertical:
             for i in range(size):
-                self.ships.append((ship_coords[0] + i, ship_coords[1]))
+                self.ships.append((ship_coords[0] + i, ship_coords[1], ship_info))
         else:
             for i in range(size):
-                self.ships.append((ship_coords[0], ship_coords[1] + i))
+                self.ships.append((ship_coords[0], ship_coords[1] + i, ship_info))
 
     # Player makes a guess
     def make_guess(self):
@@ -79,13 +79,30 @@ class Board:
 
     # Result of an attack on the board
     def mark_board(self, guess, opponent_board, player_name):
-        if guess in opponent_board.ships:
-            ship = opponent_board.ships[guess]
-            print(f"Hit! {player_name} guessed {guess} and hit the {ship}")
-            return "*"
-        else:
-            print(f"Miss! {player_name} guessed {guess}")
-            return "X"
+        for ship_coords in opponent_board.ships:
+            if guess in ship_coords:
+                ship_info = ship_coords[2]
+                print(f"Hit! {player_name} guessed {guess} and hit the {ship_info['name']}")
+                return "*",ship_coords
+        print(f"Miss! {player_name} guessed {guess}")
+        return "X", None
+
+    def display_board_with_hits(self):
+        print(" " + " ".join(str(i) for i in range(self.size)))
+        for i in range(self.size):
+            row = [f"{i}|" if j == 0 else " " for j in range(self.size + 1)]
+            print("".join(row), end="")
+            for j in range(self.size):
+                coord = (i, j)
+                if coord in self.guesses:
+                    hit_ships = [ship for ship in self.ships if coord in [s[:2] for s in ship]]
+                    if hit_ships:
+                        print(" *", end="")
+                else:
+                    print(" X", end="")
+            else:
+                print(" o", end="")
+        print("\n")
 
 # Function for player to set up their own ships
 def player_setup(player_name, is_random=True):
@@ -150,7 +167,7 @@ def play_game(player_name):
     # Display the final scores and boards
     print("\nFinal Boards:")
     print(f"\n{player_name}'s Board:")
-    player_board.display_board()
+    player_board.display_board_with_hits()
     print("\nComputer's Board:")
     computer_board.display_board()
 

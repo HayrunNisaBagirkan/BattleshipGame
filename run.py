@@ -8,6 +8,16 @@ class Board:
         self.guesses = []  # List to store made guesses.
         self.ships = []  # List to store ship locations and types.
 
+    # Display the current state of the board
+    def display_board(self):
+        print(" " + " ".join(str(i) for i in range(self.size)))
+        for i in range(self.size):
+            row = [f"{i}|" if j == 0 else " o" for j in range(self.size + 1)]
+            print("".join(row))
+        print("\nShips:")
+        for ship, size in self.ship_sizes.items():
+            print(f"{ship} ({size} units)")
+
     # Populates the boards with player's ships
     def populate_board(self):
         for ship, size in self.ship_sizes.items():
@@ -26,6 +36,7 @@ class Board:
                 if not self.has_overlap(ship_coords, size, is_vertical):
                     self.place_ship(ship, ship_coords, size, is_vertical)
                     break
+
 
     # Check if ships overlap
     def has_overlap(self, ship_coords, size, is_vertical):
@@ -77,16 +88,16 @@ class Board:
             return "X"
 
 # Function for player to set up their own ships
-def player_setup(player_name):
+def player_setup(player_name, is_random=True):
     # The size of the game board is set to 10x10.
     size = 10
     # Dictionary of ship names and sizes.
-    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3}
     player_board = Board(size, ship_sizes)
 
-    # Player sets up their own ships manually.
-    print(f"{player_name}, it's time to place your ships!")
-    player_board.populate_board()
+    # Ships sets up randomly.
+    if not is_random:
+        player_board.display_board()
 
     return player_board
 
@@ -95,7 +106,7 @@ def computer_setup():
     # The size of the game board is set to 10x10.
     size = 10
     # Dictionary of ship names and sizes.
-    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3, 'Submarine': 3, 'Destroyer': 2}
+    ship_sizes = {'Carrier': 5, 'Battleship': 4, 'Cruiser': 3}
     computer_board = Board(size, ship_sizes)
 
     computer_board.populate_board()
@@ -107,10 +118,22 @@ def play_game(player_name):
     player_board = player_setup(player_name)
     computer_board = computer_setup()
 
+    # Display the initial state of the boards
+    print(f"\n{player_name}'s Board:")
+    player_board.display_board()
+    print("\nComputer's Board:")
+    computer_board.display_board()
+
     player_score = 0
     computer_score = 0
 
     for _ in range(sum(player_board.ship_sizes.values())):
+        # Display the current state of the boards before each turn
+        print(f"\n{player_name}'s Board:")
+        player_board.display_board()
+        print("\nComputer's Board:")
+        computer_board.display_board()
+
         player_guess = player_board.make_guess()
         computer_guess = (
             random.randint(0, player_board.size - 1),
@@ -123,6 +146,13 @@ def play_game(player_name):
         if player_result == "*" and computer_result == "*":
             player_score += 1
             computer_score += 1
+
+    # Display the final scores and boards
+    print("\nFinal Boards:")
+    print(f"\n{player_name}'s Board:")
+    player_board.display_board()
+    print("\nComputer's Board:")
+    computer_board.display_board()
 
     print(f"{player_name}'s Score: {player_score}")
     print(f"Computer's Score: {computer_score}")

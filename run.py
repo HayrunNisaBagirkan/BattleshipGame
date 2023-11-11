@@ -164,7 +164,7 @@ def play_game(computer_board, player_board):
                     break
                 else:
                     print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
-                
+            break
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)
         result = computer_board.guesses(x, y)
@@ -211,5 +211,5 @@ def new_game():
     for _ in range(num_ships):
         populate_board(player_board)
         populate_board(computer_board)
-
- new_game()
+        
+        new_game()

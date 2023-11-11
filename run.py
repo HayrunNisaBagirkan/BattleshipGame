@@ -117,7 +117,6 @@ def populate_board(board):
     """
     Parameters:
     -board (Boards): The game board object yo populate with ships.
-    -break: Terminate loops.
     """
     for _ in range(board.num_ships):
         while True:
@@ -203,6 +202,6 @@ def new_game():
         populate_board(player_board)
         populate_board(computer_board)
 
-    new_game
+    new_game()
 
 

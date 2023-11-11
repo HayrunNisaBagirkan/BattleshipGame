@@ -91,7 +91,7 @@ def random_point(size):
     Returns:
     -int: A random integer in the range [0, size].
     """
-    return randint(o, size - 1)
+    return randint(0, size - 1)
 
 
 """

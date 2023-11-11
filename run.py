@@ -156,7 +156,7 @@ def play_game(computer_board, player_board):
             print(f"Game over. {player_board.name} is the Winner")
             play_again = input("Do you want to play again? (Y/N): ")
             if play_again.upper() == "Y" :
-                new_game
+                new_game()
             else:
                 print("See you next time!")
                 break
@@ -169,7 +169,7 @@ def play_game(computer_board, player_board):
             print("Game over. Computer is the Winner")
             play_again = input("Do you want to play again? (Y/N): ")
             if play_again.upper() == "Y" :
-                new_game
+                new_game()
             else:
                 print("See you next time!")
                 break
@@ -189,10 +189,10 @@ def new_game():
     print("Welcome to Battleships Game!")
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
-    print("f Board Size: {size}. Number of ships: {num_ships}")
+    print(f"Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
     print("=" * 10)
-    player_name = input("Please enter your name: /n")
+    player_name = input("Please enter your name: ")
     print("=" * 10)
 
     computer_board = Board(size, num_ships, "Computer", type="computer")

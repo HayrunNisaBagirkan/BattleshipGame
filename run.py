@@ -36,11 +36,31 @@ Set the board size, number of ships, player's name, the board type (player and c
 """
 Print the current state of the game board. (print method)
 """
+    def print(self):
+        for row in self.board:
+            print(" ".join(row))
 
 
 """
 Set the method for player's guess and update the boards responses. (guesses method)
 """
+    def guesses(self, x, y):
+        """
+        Parameters:
+        -x (int): The row coordinates of the guess.
+        -y (int): The column coordinates of the guess.
+        Returns:
+        - str: If the guess hits a ship returs "Hit", otherwise "Miss".
+        """
+        self.guesses.append((x, y))
+        self.board[x][y] = "X"
+
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "Hit"
+        else:
+            return "Miss"
 
 
 """

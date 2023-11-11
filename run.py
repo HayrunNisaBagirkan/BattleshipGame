@@ -157,8 +157,8 @@ def play_game(computer_board, player_board):
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
                 if play_again.upper() == "Y":
-                new_game()
-                break
+                    new_game()
+                    break
 
             elif play_again.upper() == "N":
                 print("See you next time!")

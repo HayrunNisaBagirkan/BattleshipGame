@@ -159,12 +159,10 @@ def play_game(computer_board, player_board):
                 if play_again.upper() == "Y":
                     new_game()
                     break
-
-            elif play_again.upper() == "N":
-                print("See you next time!")
-                break
-            
-            else:
+                elif play_again.upper() == "N":
+                    print("See you next time!")
+                    break
+                else:
                 print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
                 
         print("Computer's Turn")

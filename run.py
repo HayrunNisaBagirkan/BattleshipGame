@@ -78,7 +78,7 @@ class Board:
         else:
             self.ships.append((x, y))
             if self.type == "player":
-                self.board[x][y] = "$"
+                self.board[x][y] = "*"
 
 
 """
@@ -106,7 +106,7 @@ def valid_coordinates(x, y, board):
     Returns:
     - bool: If the coordinates are valid, return 'True', otherwise 'False'.
     """
-    return 0 <= x < board.size and 0 <= y <board.size
+    return 0 <= x < (board.size-1) and 0 <= y < (board.size-1)
 
 
 
@@ -120,8 +120,8 @@ def populate_board(board):
     """
     for _ in range(board.num_ships):
         while True:
-            x = random_point(board.size)
-            y = random_point(board.size)
+            x = random_point(board.size-1)
+            y = random_point(board.size-1)
             if (x, y) not in board.ships:
                 board.add_ship(x, y)
                 break

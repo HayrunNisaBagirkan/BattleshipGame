@@ -73,9 +73,9 @@ class Board:
         - y (int): The column coordinates to place the ship.
         - type (str): The type of the ships owner
         """
-        if  len(self.ships) >= self.num_ships:
-            print("Error: not allowed to add more ships!")
-        else:
+        #if  len(self.ships) >= self.num_ships:
+           # print("Error: not allowed to add more ships!")
+        #else:
             self.ships.append((x, y))
             if self.type == "player":
                 self.board[x][y] = "*"

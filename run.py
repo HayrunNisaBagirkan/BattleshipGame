@@ -211,5 +211,7 @@ def new_game():
     for _ in range(num_ships):
         populate_board(player_board)
         populate_board(computer_board)
+
+    play_game(computer_board, player_board)
         
-    new_game()
+new_game()

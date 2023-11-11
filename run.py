@@ -202,7 +202,14 @@ def new_game():
     print(f"Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
     print("=" * 10)
-    player_name = input("Please enter your name: ")
+
+    while True:
+        player_name = input("Please enter your name: ")
+        if player_name:
+            break
+        else:
+            print("Please enter a valid name!")
+
     print("=" * 10)
 
     computer_board = Board(size, num_ships, "Computer", type="computer")
@@ -212,6 +219,7 @@ def new_game():
         populate_board(player_board)
         populate_board(computer_board)
 
+    input("Press Enter to start the game")
     play_game(computer_board, player_board)
         
 new_game()

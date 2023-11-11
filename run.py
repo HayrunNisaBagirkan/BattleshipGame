@@ -12,17 +12,17 @@ scores = {"computer": 0, "player": 0}
 Define Board class
 """
 class Board:
-"""
-Main board class. Sets board size, the number of ships,
-the player's name, the board type (player board or computer).
-Has methods for adding ships and guesses and printing the board.
-"""
-
-
-"""
-Define __init__ method to initialize a new game board.
-Set the board size, number of ships, player's name, the board type (player and computer)
-"""
+    """
+    Main board class. Sets board size, the number of ships,
+    the player's name, the board type (player board or computer).
+    Has methods for adding ships and guesses and printing the board.
+    """
+    
+    
+    """
+    Define __init__ method to initialize a new game board.
+    Set the board size, number of ships, player's name, the board type (player and computer)
+    """
     def __init__(self, size, num_ships, name, type):
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
@@ -31,19 +31,19 @@ Set the board size, number of ships, player's name, the board type (player and c
         self.type = type
         self.guesses = []
         self.ships = []
-
-
-"""
-Print the current state of the game board. (print method)
-"""
+        
+        
+        """
+        Print the current state of the game board. (print method)
+        """
     def print(self):
         for row in self.board:
             print(" ".join(row))
 
 
-"""
-Set the method for player's guess and update the boards responses. (guesses method)
-"""
+            """
+            Set the method for player's guess and update the boards responses. (guesses method)
+            """
     def guesses(self, x, y):
         """
         Parameters:
@@ -61,11 +61,11 @@ Set the method for player's guess and update the boards responses. (guesses meth
             return "Hit"
         else:
             return "Miss"
-
-
-"""
-Add ship to the game board. (add_ship)
-"""
+            
+            
+            """
+            Add ship to the game board. (add_ship)
+            """
     def add_ship(self, x, y, type="computer"):
         """
         Parameters:
@@ -82,8 +82,7 @@ Add ship to the game board. (add_ship)
 
 
 """
-Generate random integer coordinates within the specified board size.
-'random_point' function.
+Define the 'random_point' function.
 """
 def random_point(size):
     """
@@ -96,23 +95,85 @@ def random_point(size):
 
 
 """
-Check if given coordinations are valid with 'valid_coordinates'function.
+Define the 'valid_coordinates'function.
 """
-def
+def valid_coordinates(x, y, board):
+    """
+    Parameters:
+    - x (int): The row coordinates to check.
+    - y (int): The column coordinates to check.
+    - board (Board): The game board object to check against.
+    Returns:
+    - bool: If the coordinates are valid, return 'True', otherwise 'False'.
+    """
+    return 0 <= x < board.size and 0 <= y <board.size
 
 
+
 """
-Populate the game board with ships with 'populate_board' function.
+Define the 'populate_board' function.
 """
-def
+def populate_board(board):
+    """
+    Parameters:
+    -board (Boards): The game board object yo populate with ships.
+    -break: Terminate loops.
+    """
+    for _ in range(board.num_ships):
+        while True:
+            x = random_point(board.size)
+            y = random_point(board.size)
+            if (x, y) not in board.ships:
+                board.add_ship(x, y)
+                break
 
 
 """
 Set 'make_guess' and 'play_game' functions for players.
 """
-def
+def make_guess(board):
+    while True:
+        try:
+            x = int(input("Enter a number for row (0-5)"))
+            y = int(input("Enter a number for column (0-5)"))
+            if not valid_coordinates(x, y, board):
+                print("Invalid coordinates. Please try again!")
+            elif (x, y) in board.guesses:
+                print("You can not repeat the same choice. Please try again!")
+            else:
+                result = board.guesses(x, y)
+                print(result)
+                break
+        except ValueError:
+            print("Invalid input. Please enter valid coordinates as integers.")
 
-def
+def play_game(computer_board, player_board):
+    while True:
+        print("Player's turn")
+        player_board.print()
+        make_guess(player_board)
+
+        if all(coord in player_board.guesses for coord in computer_board.ships):
+            print(f"Game over. {player_board.name} is the Winner")
+            play_again = input("Do you want to play again? (Y/N): ")
+            if play_again.upper() == "Y" :
+                new_game
+            else:
+                print("See you next time!")
+                break
+        print("Computer's Turn")
+        x, y = random_point(computer_board.size), random_point(computer_board.size)
+        result = computer_board.guesses(x, y)
+        print(result)
+
+        if all(coord in computer_board.guesses for coord in player_board.ships):
+            print("Game over. Computer is the Winner")
+            play_again = input("Do you want to play again? (Y/N): ")
+            if play_again.upper() == "Y" :
+                new_game
+            else:
+                print("See you next time!")
+                break
 
 
 """

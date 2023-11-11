@@ -159,7 +159,7 @@ def play_game(computer_board, player_board):
                 if play_again.upper() == "Y":
                     new_game()
                     break
-                elif play_again.upper() == "N":
+                elif play_again.upper() == "N" :
                     print("See you next time!")
                     break
                 else:

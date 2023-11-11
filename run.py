@@ -181,4 +181,28 @@ Start a new game with 'new_game' function.
 Sets a new game, initializes the board size, number of ships, and player names.
 Creates a new game boards and score boards.
 """
+def new_game():
+    size = 6
+    num_ships = 10
+    scores["computer"] = 0
+    scores["player"] = 0
+    print("=" * 10)
+    print("Welcome to Battleships Game!")
+    print("Want to see how strong your predistions are?")
+    print("Come on and try yourself against the computer.")
+    print("f" Board Size: {size}. Number of ships: {num_ships}")
+    print("Top left corner is row: 0, col: 0")
+    print("=" * 10)
+    player_name = input("Please enter your name: /n")
+    print("=" * 10)
+
+    computer_board = Board(size, num_ships, "Computer" type="computer")
+    player_board = Board(size, num_ships, player_name, type="player")
+
+    for _ in range(num_ships):
+        populate_board(player_board)
+        populate_board(computer_board)
+
+    new_game
+
 

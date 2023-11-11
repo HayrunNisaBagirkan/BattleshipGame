@@ -163,7 +163,7 @@ def play_game(computer_board, player_board):
                     print("See you next time!")
                     break
                 else:
-                print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
+                    print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
                 
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)

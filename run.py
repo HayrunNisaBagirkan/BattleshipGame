@@ -66,6 +66,19 @@ Set the method for player's guess and update the boards responses. (guesses meth
 """
 Add ship to the game board. (add_ship)
 """
+    def add_ship(self, x, y, type="computer"):
+        """
+        Parameters:
+        - x (int): The row coordinates to place the ship.
+        - y (int): The column coordinates to place the ship.
+        - type (str): The type of the ships owner
+        """
+        if  len(self.ships) >= self.num_ships:
+            print("Error: not allowed to add more ships!")
+        else:
+            self.ships.append((x, y))
+            if self.type == "player":
+                self.board[x][y] = "$"
 
 
 """

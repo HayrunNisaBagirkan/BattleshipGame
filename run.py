@@ -58,9 +58,9 @@ class Board:
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
-            return "Hit"
+            print("Hit")
         else:
-            return "Miss"
+            print("Miss")
             
             
             """

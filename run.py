@@ -154,12 +154,19 @@ def play_game(computer_board, player_board):
 
         if all(coord in player_board.guesses for coord in computer_board.ships):
             print(f"Game over. {player_board.name} is the Winner")
-            play_again = input("Do you want to play again? (Y/N): ")
-            if play_again.upper() == "Y" :
+            while True:
+                play_again = input("Do you want to play again? (Y/N): ")
+                if play_again.upper() == "Y":
                 new_game()
-            else:
+                break
+
+            elif play_again.upper() == "N":
                 print("See you next time!")
                 break
+            
+            else:
+                print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
+                
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)
         result = computer_board.guesses(x, y)
@@ -167,13 +174,18 @@ def play_game(computer_board, player_board):
 
         if all(coord in computer_board.guesses for coord in player_board.ships):
             print("Game over. Computer is the Winner")
-            play_again = input("Do you want to play again? (Y/N): ")
-            if play_again.upper() == "Y" :
-                new_game()
-            else:
-                print("See you next time!")
-                break
-
+            while True:
+                play_again = input("Do you want to play again? (Y/N): ")
+                if play_again.upper() == "Y" :
+                    new_game()
+                    break
+                elif play_again.upper() == "N":
+                    print("See you next time!")
+                    break
+                else:
+                    print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
+            break
+                
 
 """
 Start a new game with 'new_game' function.
@@ -202,6 +214,4 @@ def new_game():
         populate_board(player_board)
         populate_board(computer_board)
 
-    new_game()
-
-
+ new_game()

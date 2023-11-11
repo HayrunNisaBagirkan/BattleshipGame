@@ -82,23 +82,37 @@ Add ship to the game board. (add_ship)
 
 
 """
-Generate random integer coordinates within the specified board size with 'random_point' function.
+Generate random integer coordinates within the specified board size.
+'random_point' function.
 """
+def random_point(size):
+    """
+    Parameters:
+    - size (int): The limit for the random integer.
+    Returns:
+    -int: A random integer in the range [0, size].
+    """
+    return randint(o, size - 1)
 
 
 """
 Check if given coordinations are valid with 'valid_coordinates'function.
 """
+def
 
 
 """
 Populate the game board with ships with 'populate_board' function.
 """
+def
 
 
 """
 Set 'make_guess' and 'play_game' functions for players.
 """
+def
+
+def
 
 
 """

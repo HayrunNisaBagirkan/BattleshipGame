@@ -190,7 +190,7 @@ def new_game():
     print("Welcome to Battleships Game!")
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
-    print("f" Board Size: {size}. Number of ships: {num_ships}")
+    print("f Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
     print("=" * 10)
     player_name = input("Please enter your name: /n")

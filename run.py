@@ -196,7 +196,7 @@ def new_game():
     player_name = input("Please enter your name: /n")
     print("=" * 10)
 
-    computer_board = Board(size, num_ships, "Computer" type="computer")
+    computer_board = Board(size, num_ships, "Computer", type="computer")
     player_board = Board(size, num_ships, player_name, type="player")
 
     for _ in range(num_ships):

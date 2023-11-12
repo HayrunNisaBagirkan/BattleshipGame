@@ -75,7 +75,7 @@ class Board:
         """
         self.ships.append((x, y))
         if self.type == "player":
-            self.board[x][y] = "$"
+            self.board[x][y] = "o"
 
 
 """
@@ -228,6 +228,7 @@ def new_game():
     print("=" * 10)
 
     input("Press Enter to start the game")
+    print("=" * 10)
     play_game(computer_board, player_board)
         
 new_game()

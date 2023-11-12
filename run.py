@@ -171,7 +171,7 @@ def play_game(computer_board, player_board):
             break
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)
-        player_board.add_guesses(x, y)
+        result = player_board.add_guesses(x, y)
         if result == "Hit":
             print("Computer Hit!")
         else:

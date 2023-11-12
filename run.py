@@ -53,7 +53,7 @@ class Board:
         - str: If the guess hits a ship returs "Hit", otherwise "Miss".
         """
         self.guesses.append((x, y))
-        self.board[x][y] = "X"
+        self.board[x][y] = "x"
 
 
         if (x, y) in self.ships:
@@ -73,12 +73,12 @@ class Board:
         - y (int): The column coordinates to place the ship.
         - type (str): The type of the ships owner
         """
-        #if  len(self.ships) >= self.num_ships:
-           # print("Error: not allowed to add more ships!")
-        #else:
+        if (len(self.ships) >= self.num_ships):
+
+        else:
             self.ships.append((x, y))
             if self.type == "player":
-                self.board[x][y] = "*"
+                self.board[x][y] = "$"
 
 
 """

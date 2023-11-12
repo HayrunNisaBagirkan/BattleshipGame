@@ -44,7 +44,7 @@ class Board:
             """
             Set the method for player's guess and update the boards responses. (guesses method)
             """
-    def guesses(self, x, y):
+    def add_guesses(self, x, y):
         """
         Parameters:
         -x (int): The row coordinates of the guess.
@@ -58,9 +58,9 @@ class Board:
 
         if (x, y) in self.ships:
             self.board[x][y] = "*"
-            print("Hit")
+            return "Hit"
         else:
-            print("Miss")
+            return "Miss"
             
             
             """
@@ -137,7 +137,8 @@ def make_guess(board):
             elif (x, y) in board.guesses:
                 print("You can not repeat the same choice. Please try again!")
             else:
-                board.guesses(x, y)
+                result = board.add_guesses(x, y)
+                print(result)
                 board.print
                 break
         except ValueError:
@@ -150,9 +151,9 @@ def play_game(computer_board, player_board):
         player_board.print()
         print("Computer's board")
         computer_board.print()
-        make_guess(player_board)
+        make_guess(computer_board)
 
-        if all(coord in player_board.guesses for coord in computer_board.ships):
+        if all(coord in computer_board.guesses for coord in computer_board.ships):
             print(f"Game over. {player_board.name} is the Winner")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
@@ -167,10 +168,9 @@ def play_game(computer_board, player_board):
             break
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)
-        result = computer_board.guesses(x, y)
-        print(result)
+        player_board.add_guesses(x, y)
 
-        if all(coord in computer_board.guesses for coord in player_board.ships):
+        if all(coord in player_board.guesses for coord in player_board.ships):
             print("Game over. Computer is the Winner")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")

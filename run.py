@@ -74,7 +74,7 @@ class Board:
         - type (str): The type of the ships owner
         """
         if (len(self.ships) >= self.num_ships):
-
+            print("---")
         else:
             self.ships.append((x, y))
             if self.type == "player":

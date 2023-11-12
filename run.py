@@ -94,7 +94,7 @@ def random_point(size):
 """
 Define the 'valid_coordinates'function.
 """
-def valid_coordinates(x, y, board):
+def valid_coordinates(x, y, size):
     """
     Parameters:
     - x (int): The row coordinates to check.
@@ -103,7 +103,7 @@ def valid_coordinates(x, y, board):
     Returns:
     - bool: If the coordinates are valid, return 'True', otherwise 'False'.
     """
-    return 0 <= x < (board.size-1) and 0 <= y < (board.size-1)
+    return 0 <= x < size and 0 <= y < size
 
 
 
@@ -132,13 +132,13 @@ def make_guess(board):
         try:
             x = int(input("Enter a number for row (0-5)"))
             y = int(input("Enter a number for column (0-5)"))
-            if not valid_coordinates(x, y, board):
+            if not valid_coordinates(x, y, board.size):
                 print("Invalid coordinates. Please try again!")
             elif (x, y) in board.guesses:
                 print("You can not repeat the same choice. Please try again!")
             else:
-                result = board.guesses(x, y)
-                print(result)
+                board.guesses(x, y)
+                board.print
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
@@ -146,7 +146,10 @@ def make_guess(board):
 def play_game(computer_board, player_board):
     while True:
         print("Player's turn")
+        print("Player's board")
         player_board.print()
+        print("Computer's board")
+        computer_board.print()
         make_guess(player_board)
 
         if all(coord in player_board.guesses for coord in computer_board.ships):

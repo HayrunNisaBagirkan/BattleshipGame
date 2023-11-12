@@ -23,12 +23,12 @@ class Board:
     Define __init__ method to initialize a new game board.
     Set the board size, number of ships, player's name, the board type (player and computer)
     """
-    def __init__(self, size, num_ships, name, type):
+    def __init__(self, size, num_ships, name, type1):
         self.size = size
         self.board = [["." for x in range(size)] for y in range(size)]
         self.num_ships = num_ships
         self.name = name
-        self.type = type
+        self.type = type1
         self.guesses = []
         self.ships = []
         
@@ -66,19 +66,16 @@ class Board:
             """
             Add ship to the game board. (add_ship)
             """
-    def add_ship(self, x, y, type="computer"):
+    def add_ship(self, x, y):
         """
         Parameters:
         - x (int): The row coordinates to place the ship.
         - y (int): The column coordinates to place the ship.
         - type (str): The type of the ships owner
         """
-        if (len(self.ships) >= self.num_ships):
-            print("---")
-        else:
-            self.ships.append((x, y))
-            if self.type == "player":
-                self.board[x][y] = "$"
+        self.ships.append((x, y))
+        if self.type == "player":
+            self.board[x][y] = "$"
 
 
 """
@@ -212,12 +209,10 @@ def new_game():
 
     print("=" * 10)
 
-    computer_board = Board(size, num_ships, "Computer", type="computer")
-    player_board = Board(size, num_ships, player_name, type="player")
-
-    for _ in range(num_ships):
-        populate_board(player_board)
-        populate_board(computer_board)
+    computer_board = Board(size, num_ships, "Computer", "computer")
+    player_board = Board(size, num_ships, player_name, "player")    
+    populate_board(player_board)
+    populate_board(computer_board)
 
     input("Press Enter to start the game")
     play_game(computer_board, player_board)

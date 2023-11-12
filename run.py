@@ -223,6 +223,7 @@ def new_game():
     player_board = Board(size, num_ships, player_name, "player")    
     populate_board(player_board)
     populate_board(computer_board)
+    print("=" * 10)
 
     input("Press Enter to start the game")
     play_game(computer_board, player_board)

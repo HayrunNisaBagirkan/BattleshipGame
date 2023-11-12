@@ -19,8 +19,6 @@ class Board:
     the player's name, the board type (player board or computer).
     Has methods for adding ships and guesses and printing the board.
     """
-
-
     """
     Define __init__ method to initialize a new game board.
     Set the board size, number of ships, player's name,
@@ -34,8 +32,8 @@ class Board:
         self.type = type1
         self.guesses = []
         self.ships = []
-        
-        
+
+
     """
     Print the current state of the game board. (print method)
     """
@@ -65,8 +63,8 @@ class Board:
             return "Hit"
         else:
             return "Miss"
-            
-            
+
+
     """
     Add ship to the game board. (add_ship)
     """
@@ -85,6 +83,8 @@ class Board:
 """
 Define the 'random_point' function.
 """
+
+
 def random_point(size):
     """
     Parameters:
@@ -98,6 +98,8 @@ def random_point(size):
 """
 Define the 'valid_coordinates'function.
 """
+
+
 def valid_coordinates(x, y, size):
     """
     Parameters:
@@ -113,6 +115,8 @@ def valid_coordinates(x, y, size):
 """
 Define the 'populate_board' function.
 """
+
+
 def populate_board(board):
     """
     Parameters:
@@ -130,6 +134,8 @@ def populate_board(board):
 """
 Set 'make_guess' and 'play_game' functions for players.
 """
+
+
 def make_guess(board):
     while True:
         try:
@@ -160,21 +166,25 @@ def play_game(computer_board, player_board):
         computer_board.print()
         make_guess(computer_board)
 
-        if all(coord in computer_board.guesses for coord in computer_board.ships):
+        if all(
+            coord in computer_board.guesses
+            for coord in computer_board.ships
+        ):
             print(f"Game over. {player_board.name} is the Winner")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
                 if play_again.upper() == "Y":
                     new_game()
                     break
-                elif play_again.upper() == "N" :
+                elif play_again.upper() == "N":
                     print("Thank you! See you next time!")
                     break
                 else:
-                    print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
+                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
         print("Computer's Turn")
-        x, y = random_point(computer_board.size), random_point(computer_board.size)
+        x, y = random_point(
+            computer_board.size), random_point(computer_board.size)
         result = player_board.add_guesses(x, y)
         if result == "Hit":
             print("Computer Hit!")
@@ -185,16 +195,16 @@ def play_game(computer_board, player_board):
             print("Game over. Computer is the Winner")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
-                if play_again.upper() == "Y" :
+                if play_again.upper() == "Y":
                     new_game()
                     break
                 elif play_again.upper() == "N":
                     print("Thank you! See you next time!")
                     break
                 else:
-                    print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
+                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
-                
+
 
 """
 Start a new game with 'new_game' function.
@@ -228,7 +238,7 @@ def new_game():
     print("=" * 10)
 
     computer_board = Board(size, num_ships, "Computer", "computer")
-    player_board = Board(size, num_ships, player_name, "player")    
+    player_board = Board(size, num_ships, player_name, "player")
     populate_board(player_board)
     populate_board(computer_board)
     print("=" * 10)
@@ -236,5 +246,6 @@ def new_game():
     input("Press Enter to start the game")
     print("=" * 10)
     play_game(computer_board, player_board)
-        
+
+
 new_game()

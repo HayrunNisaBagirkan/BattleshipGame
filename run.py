@@ -11,17 +11,20 @@ scores = {"computer": 0, "player": 0}
 """
 Define Board class
 """
+
+
 class Board:
     """
     Main board class. Sets board size, the number of ships,
     the player's name, the board type (player board or computer).
     Has methods for adding ships and guesses and printing the board.
     """
-    
-    
+
+
     """
     Define __init__ method to initialize a new game board.
-    Set the board size, number of ships, player's name, the board type (player and computer)
+    Set the board size, number of ships, player's name,
+    the board type (player and computer)
     """
     def __init__(self, size, num_ships, name, type1):
         self.size = size
@@ -33,17 +36,18 @@ class Board:
         self.ships = []
         
         
-        """
-        Print the current state of the game board. (print method)
-        """
+    """
+    Print the current state of the game board. (print method)
+    """
     def print(self):
         for row in self.board:
             print(" ".join(row))
 
 
-            """
-            Set the method for player's guess and update the boards responses. (guesses method)
-            """
+    """
+    Set the method for player's guess and update the boards responses.
+    (guesses method)
+    """
     def add_guesses(self, x, y):
         """
         Parameters:
@@ -63,9 +67,9 @@ class Board:
             return "Miss"
             
             
-            """
-            Add ship to the game board. (add_ship)
-            """
+    """
+    Add ship to the game board. (add_ship)
+    """
     def add_ship(self, x, y):
         """
         Parameters:
@@ -104,7 +108,6 @@ def valid_coordinates(x, y, size):
     - bool: If the coordinates are valid, return 'True', otherwise 'False'.
     """
     return 0 <= x < size and 0 <= y < size
-
 
 
 """
@@ -146,6 +149,7 @@ def make_guess(board):
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
+
 
 def play_game(computer_board, player_board):
     while True:
@@ -197,6 +201,8 @@ Start a new game with 'new_game' function.
 Sets a new game, initializes the board size, number of ships, and player names.
 Creates a new game boards and score boards.
 """
+
+
 def new_game():
     size = 6
     num_ships = 10

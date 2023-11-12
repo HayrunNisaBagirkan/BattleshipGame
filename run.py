@@ -170,7 +170,7 @@ def play_game(computer_board, player_board):
             coord in computer_board.guesses
             for coord in computer_board.ships
         ):
-            print(f"Game over. {player_board.name} is the Winner")
+            print(f"GAME OVER. {player_board.name} is the WINNER")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
                 if play_again.upper() == "Y":
@@ -192,7 +192,7 @@ def play_game(computer_board, player_board):
             print("Computer Missed!")
 
         if all(coord in player_board.guesses for coord in player_board.ships):
-            print("Game over. Computer is the Winner")
+            print("GAME OVER. Computer is the WINNER")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
                 if play_again.upper() == "Y":
@@ -243,7 +243,7 @@ def new_game():
     populate_board(computer_board)
     print("=" * 10)
 
-    input("Press Enter to start the game")
+    input("Press ENTER to START the game")
     print("=" * 10)
     play_game(computer_board, player_board)
 

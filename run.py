@@ -164,7 +164,7 @@ def play_game(computer_board, player_board):
                     new_game()
                     break
                 elif play_again.upper() == "N" :
-                    print("See you next time!")
+                    print("Thank you! See you next time!")
                     break
                 else:
                     print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")
@@ -185,7 +185,7 @@ def play_game(computer_board, player_board):
                     new_game()
                     break
                 elif play_again.upper() == "N":
-                    print("See you next time!")
+                    print("Thank you! See you next time!")
                     break
                 else:
                     print("Invalid input. Please enter 'Y' for Yes or 'N' for No.")

@@ -173,9 +173,9 @@ def play_game(computer_board, player_board):
         x, y = random_point(computer_board.size), random_point(computer_board.size)
         player_board.add_guesses(x, y)
         if result == "Hit":
-                    print("Computer Hit!")
-                else:
-                    print("Computer Missed!")
+            print("Computer Hit!")
+        else:
+            print("Computer Missed!")
 
         if all(coord in player_board.guesses for coord in player_board.ships):
             print("Game over. Computer is the Winner")

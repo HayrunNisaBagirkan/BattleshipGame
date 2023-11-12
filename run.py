@@ -138,8 +138,11 @@ def make_guess(board):
                 print("You can not repeat the same choice. Please try again!")
             else:
                 result = board.add_guesses(x, y)
-                print(result)
-                board.print
+                if result == "Hit":
+                    print("Player Hit!")
+                else:
+                    print("Player Missed!")
+                board.print()
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
@@ -169,6 +172,10 @@ def play_game(computer_board, player_board):
         print("Computer's Turn")
         x, y = random_point(computer_board.size), random_point(computer_board.size)
         player_board.add_guesses(x, y)
+        if result == "Hit":
+                    print("Computer Hit!")
+                else:
+                    print("Computer Missed!")
 
         if all(coord in player_board.guesses for coord in player_board.ships):
             print("Game over. Computer is the Winner")

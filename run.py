@@ -218,33 +218,31 @@ def new_game():
     num_ships = 10
     scores["computer"] = 0
     scores["player"] = 0
-    print("=" * 10)
+    print("=" * 40)
     print("Welcome to Battleships Game!")
+    
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
-    print("=" * 10)
+    print("=" * 40)
     print(f"Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
-    print("=" * 10)
 
     while True:
-        print("=" * 10)
+        print("=" * 40)
         player_name = input("Please enter your name: ")
         if player_name:
             break
         else:
             print("Please enter a valid name!")
 
-    print("=" * 10)
-
     computer_board = Board(size, num_ships, "Computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")
     populate_board(player_board)
     populate_board(computer_board)
-    print("=" * 10)
+    print("=" * 40)
 
     input("Press ENTER to START the game")
-    print("=" * 10)
+    print("=" * 40)
     play_game(computer_board, player_board)
 
 

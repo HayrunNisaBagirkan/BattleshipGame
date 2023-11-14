@@ -182,7 +182,7 @@ def play_game(computer_board, player_board):
         print("Computer's Turn")
         while True:
             x, y = random_point(computer_board.size), random_point(computer_board.size)
-            if(x, y) not in computer_board.guesses:
+        if(x, y) not in computer_board.guesses:
             break
         result = player_board.add_guesses(x, y)
 

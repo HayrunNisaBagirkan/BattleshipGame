@@ -150,10 +150,8 @@ def make_guess(board):
                 if result == "Hit":
                     print("Player Hit!")
                     scores["player"] += 1
-                    print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
                 else:
                     print("Player Missed!")
-                    print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")

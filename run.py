@@ -240,7 +240,6 @@ def new_game():
     player_board = Board(size, num_ships, player_name, "player")
     populate_board(player_board)
     populate_board(computer_board)
-    print(computer_board.ships)
     print("=" * 40)
 
     input("Press ENTER to START the game")

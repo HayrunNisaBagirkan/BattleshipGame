@@ -162,7 +162,9 @@ def make_guess(board):
             attempts += 1
 
     if attempts == max_attempts:
-        print(f"You have made {max_attempts} invalid input attempts. The game is over")
+        print(
+            f"You have made {max_attempts} invalid input attempts.GAME OVER"
+        )
 
 
 def play_game(computer_board, player_board):
@@ -178,7 +180,10 @@ def play_game(computer_board, player_board):
             coord in computer_board.guesses
             for coord in computer_board.ships
         ):
-            print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print(
+                f"Player's score: {scores['player']}, "
+                f"Computer's score: {scores['computer']}"
+            )
             print(f"GAME OVER. {player_board.name} is the WINNER")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
@@ -198,15 +203,24 @@ def play_game(computer_board, player_board):
         if result == "Hit":
             print("Computer Hit!")
             scores["computer"] += 1
-            print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print(
+                f"Player's score: {scores['player']}, "
+                f"Computer's score: {scores['computer']}"
+            )
             print("=" * 40)
         else:
             print("Computer Missed!")
-            print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print(
+                f"Player's score: {scores['player']}, "
+                f"Computer's score: {scores['computer']}"
+            )
             print("=" * 40)
 
         if all(coord in player_board.guesses for coord in player_board.ships):
-            print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print(
+                f"Player's score: {scores['player']}, "
+                f"Computer's score: {scores['computer']}"
+            )
             print("GAME OVER. Computer is the WINNER")
             while True:
                 play_again = input("Do you want to play again? (Y/N): ")
@@ -235,7 +249,7 @@ def new_game():
     scores["player"] = 0
     print("=" * 40)
     print("Welcome to Battleships Game!")
-    
+
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
     print("=" * 40)

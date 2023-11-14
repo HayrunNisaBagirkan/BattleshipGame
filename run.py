@@ -85,7 +85,7 @@ Define the 'random_point' function.
 """
 
 
-def random_point(size):
+def random_point(board):
     """
     Parameters:
     - size (int): The limit for the random integer.
@@ -128,8 +128,7 @@ def populate_board(board):
     """
     for _ in range(board.num_ships):
         while True:
-            x = random_point(board.size-1)
-            y = random_point(board.size-1)
+            x, y = random_point(board)
             if (x, y) not in board.ships:
                 board.add_ship(x, y)
                 break

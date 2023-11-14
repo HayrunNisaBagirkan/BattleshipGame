@@ -153,6 +153,7 @@ def make_guess(board):
                     print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
                 else:
                     print("Player Missed!")
+                    print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
@@ -193,6 +194,7 @@ def play_game(computer_board, player_board):
             print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
         else:
             print("Computer Missed!")
+            print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
 
         if all(coord in player_board.guesses for coord in player_board.ships):
             print("GAME OVER. Computer is the WINNER")

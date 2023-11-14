@@ -151,7 +151,6 @@ def make_guess(board):
                     print("Player Hit!")
                 else:
                     print("Player Missed!")
-                board.print()
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")

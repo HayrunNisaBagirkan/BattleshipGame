@@ -133,11 +133,15 @@ def populate_board(board):
 
 """
 Set 'make_guess' and 'play_game' functions for players.
+Set maximum number of invalid input.
 """
 
 
 def make_guess(board):
-    while True:
+    max_attempts = 5
+    attempts = 0
+
+    while attempts < max_attempts:
         try:
             x = int(input("Enter a number for row (0-5)"))
             y = int(input("Enter a number for column (0-5)"))
@@ -155,6 +159,10 @@ def make_guess(board):
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
+            attempts += 1
+
+    if attempts == max_attempts:
+        print(f"You have made {max_attempts} invalid input attempts. The game is over")
 
 
 def play_game(computer_board, player_board):
@@ -190,9 +198,11 @@ def play_game(computer_board, player_board):
             print("Computer Hit!")
             scores["computer"] += 1
             print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print("=" * 40)
         else:
             print("Computer Missed!")
             print(f"Player's score:", scores["player"], "Computer's skor:", scores["computer"])
+            print("=" * 40)
 
         if all(coord in player_board.guesses for coord in player_board.ships):
             print("GAME OVER. Computer is the WINNER")

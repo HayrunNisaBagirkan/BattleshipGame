@@ -247,7 +247,7 @@ def new_game():
     print(f"Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
 
-    
+
     while True:
         print("=" * 40)
         player_name = input("Please enter your name: ")

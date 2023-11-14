@@ -149,10 +149,10 @@ def make_guess(board):
             else:
                 result = board.add_guesses(x, y)
                 if result == "Hit":
-                    print("Player Hit!")
-                    scores["player"] += 1
+                    print(f"{board.name} Hit!")
+                    scores["board.type"] += 1
                 else:
-                    print("Player Missed!")
+                    print(f"{board.name} Missed!")
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
@@ -180,7 +180,10 @@ def play_game(computer_board, player_board):
         print("Computer's Turn")
         x, y = random_point(
             computer_board.size), random_point(computer_board.size)
+        if(x, y) not in computer_board.guesses:
+            break
         result = player_board.add_guesses(x, y)
+
         if result == "Hit":
             print("Computer Hit!")
             scores["computer"] += 1
@@ -220,7 +223,7 @@ def new_game():
     scores["player"] = 0
     print("=" * 40)
     print("Welcome to Battleships Game!")
-
+    print("=" * 40)
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
     print("=" * 40)
@@ -249,9 +252,8 @@ def new_game():
 
 while True:
     new_game()
-    """
-    play_again = "Y"
-    """
+
+    
     while True:
         play_again = input("Do you want to play again? (Y/N): ")
         if play_again.upper() == "Y":

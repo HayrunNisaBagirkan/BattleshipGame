@@ -34,55 +34,50 @@ class Board:
         self.ships = []
 
 
-"""
-Print the current state of the game board. (print method)
-"""
-
-
-def print_board(self):
-    for row in self.board:
-        print(" ".join(row))
-
-
-"""
-Set the method for player's guess and update the boards responses.
-(guesses method)
-"""
-
-
-def add_guesses(self, x, y):
     """
-    Parameters:
-    -x (int): The row coordinates of the guess.
-    -y (int): The column coordinates of the guess.
-    Returns:
-    - str: If the guess hits a ship returs "Hit", otherwise "Miss".
+    Print the current state of the game board. (print method)
     """
-    self.guesses.append((x, y))
-    self.board[x][y] = "x"
-
-    if (x, y) in self.ships:
-        self.board[x][y] = "*"
-        return "Hit"
-    else:
-        return "Miss"
+    def print(self):
+        for row in self.board:
+            print(" ".join(row))
 
 
-"""
-Add ship to the game board. (add_ship)
-"""
-
-
-def add_ship(self, x, y):
     """
-    Parameters:
-    - x (int): The row coordinates to place the ship.
-    - y (int): The column coordinates to place the ship.
-    - type (str): The type of the ships owner
+    Set the method for player's guess and update the boards responses.
+    (guesses method)
     """
-    self.ships.append((x, y))
-    if self.type == "player":
-        self.board[x][y] = "o"
+    def add_guesses(self, x, y):
+        """
+        Parameters:
+        -x (int): The row coordinates of the guess.
+        -y (int): The column coordinates of the guess.
+        Returns:
+        - str: If the guess hits a ship returs "Hit", otherwise "Miss".
+        """
+        self.guesses.append((x, y))
+        self.board[x][y] = "x"
+
+
+        if (x, y) in self.ships:
+            self.board[x][y] = "*"
+            return "Hit"
+        else:
+            return "Miss"
+
+
+    """
+    Add ship to the game board. (add_ship)
+    """
+    def add_ship(self, x, y):
+        """
+        Parameters:
+        - x (int): The row coordinates to place the ship.
+        - y (int): The column coordinates to place the ship.
+        - type (str): The type of the ships owner
+        """
+        self.ships.append((x, y))
+        if self.type == "player":
+            self.board[x][y] = "o"
 
 
 """
@@ -90,18 +85,14 @@ Define the 'random_point' function.
 """
 
 
-def random_point(board):
+def random_point(size):
     """
     Parameters:
     - size (int): The limit for the random integer.
     Returns:
     -int: A random integer in the range [0, size].
     """
-    while True:
-        x = randint(0, board.size - 1)
-        y = randint(0, board.size - 1)
-        if (x, y) not in board.guesses:
-            return x, y
+    return randint(0, size - 1)
 
 
 """
@@ -133,7 +124,8 @@ def populate_board(board):
     """
     for _ in range(board.num_ships):
         while True:
-            x, y = random_point(board)
+            x = random_point(board.size-1)
+            y = random_point(board.size-1)
             if (x, y) not in board.ships:
                 board.add_ship(x, y)
                 break
@@ -146,7 +138,10 @@ Set maximum number of invalid input.
 
 
 def make_guess(board):
-    while True:
+    max_attempts = 5
+    attempts = 0
+
+    while attempts < max_attempts:
         try:
             x = int(input("Enter a number for row (0-5)"))
             y = int(input("Enter a number for column (0-5)"))
@@ -164,15 +159,21 @@ def make_guess(board):
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
+            attempts += 1
+
+    if attempts == max_attempts:
+        print(
+            f"You have made {max_attempts} invalid input attempts.GAME OVER"
+        )
 
 
 def play_game(computer_board, player_board):
     while True:
         print("Player's turn")
         print("Player's board")
-        player_board.print_board()
+        player_board.print()
         print("Computer's board")
-        computer_board.print_board()
+        computer_board.print()
         make_guess(computer_board)
 
         if all(
@@ -184,9 +185,20 @@ def play_game(computer_board, player_board):
                 f"Computer's score: {scores['computer']}"
             )
             print(f"GAME OVER. {player_board.name} is the WINNER")
+            while True:
+                play_again = input("Do you want to play again? (Y/N): ")
+                if play_again.upper() == "Y":
+                    new_game()
+                    break
+                elif play_again.upper() == "N":
+                    print("Thank you! See you next time!")
+                    break
+                else:
+                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
         print("Computer's Turn")
-        x, y = random_point(player_board)
+        x, y = random_point(
+            computer_board.size), random_point(computer_board.size)
         result = player_board.add_guesses(x, y)
         if result == "Hit":
             print("Computer Hit!")
@@ -210,6 +222,16 @@ def play_game(computer_board, player_board):
                 f"Computer's score: {scores['computer']}"
             )
             print("GAME OVER. Computer is the WINNER")
+            while True:
+                play_again = input("Do you want to play again? (Y/N): ")
+                if play_again.upper() == "Y":
+                    new_game()
+                    break
+                elif play_again.upper() == "N":
+                    print("Thank you! See you next time!")
+                    break
+                else:
+                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
 
 
@@ -227,21 +249,20 @@ def new_game():
     scores["player"] = 0
     print("=" * 40)
     print("Welcome to Battleships Game!")
-    print("=" * 40)
+
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
     print("=" * 40)
     print(f"Board Size: {size}. Number of ships: {num_ships}")
     print("Top left corner is row: 0, col: 0")
 
-
-while True:
-    print("=" * 40)
-    player_name = input("Please enter your name: ")
-    if player_name:
-        break
-    else:
-        print("Please enter a valid name!")
+    while True:
+        print("=" * 40)
+        player_name = input("Please enter your name: ")
+        if player_name:
+            break
+        else:
+            print("Please enter a valid name!")
 
     computer_board = Board(size, num_ships, "Computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")
@@ -254,19 +275,5 @@ while True:
     play_game(computer_board, player_board)
 
 
-while True:
-    new_game()
-    """
-    play_again = "Y"
-    """
-    while True:
-        play_again = input("Do you want to play again? (Y/N): ")
-        if play_again.upper() == "Y":
-            break
-        elif play_again.upper() == "N":
-            print("Thank you! See you next time!")
-            break
-        else:
-            print("Invalid input.Please enter'Y'for Yes or'N'for No.")
-    if play_again.upper() != "Y":
-        break
+new_game()
+

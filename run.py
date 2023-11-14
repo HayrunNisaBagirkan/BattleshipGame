@@ -246,6 +246,7 @@ def new_game():
     print("=" * 40)
     play_game(computer_board, player_board)
 
+
 while True:
     new_game()
     """

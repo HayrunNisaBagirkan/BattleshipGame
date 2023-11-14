@@ -92,7 +92,11 @@ def random_point(size):
     Returns:
     -int: A random integer in the range [0, size].
     """
-    return randint(0, size - 1)
+    while True:
+        x = randint(0, board.size -1)
+        y = randint(0, board.size -1)
+        if (x, y) not in board.guesses:
+            return x, y
 
 
 """
@@ -178,8 +182,7 @@ def play_game(computer_board, player_board):
             print(f"GAME OVER. {player_board.name} is the WINNER")
             break
         print("Computer's Turn")
-        x, y = random_point(
-            computer_board.size), random_point(computer_board.size)
+        x, y = random_point(player_board)
         result = player_board.add_guesses(x, y)
         if result == "Hit":
             print("Computer Hit!")

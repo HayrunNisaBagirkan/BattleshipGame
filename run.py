@@ -138,10 +138,7 @@ Set maximum number of invalid input.
 
 
 def make_guess(board):
-    max_attempts = 5
-    attempts = 0
-
-    while attempts < max_attempts:
+    while True:
         try:
             x = int(input("Enter a number for row (0-5)"))
             y = int(input("Enter a number for column (0-5)"))
@@ -159,12 +156,6 @@ def make_guess(board):
                 break
         except ValueError:
             print("Invalid input. Please enter valid coordinates as integers.")
-            attempts += 1
-
-    if attempts == max_attempts:
-        print(
-            f"You have made {max_attempts} invalid input attempts.GAME OVER"
-        )
 
 
 def play_game(computer_board, player_board):

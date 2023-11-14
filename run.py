@@ -34,50 +34,56 @@ class Board:
         self.ships = []
 
 
-    """
-    Print the current state of the game board. (print method)
-    """
-    def print(self):
-        for row in self.board:
-            print(" ".join(row))
+"""
+Print the current state of the game board. (print method)
+"""
 
 
-    """
-    Set the method for player's guess and update the boards responses.
-    (guesses method)
-    """
-    def add_guesses(self, x, y):
-        """
-        Parameters:
-        -x (int): The row coordinates of the guess.
-        -y (int): The column coordinates of the guess.
-        Returns:
-        - str: If the guess hits a ship returs "Hit", otherwise "Miss".
-        """
-        self.guesses.append((x, y))
-        self.board[x][y] = "x"
+def print(self):
+    for row in self.board:
+        print(" ".join(row))
 
 
-        if (x, y) in self.ships:
-            self.board[x][y] = "*"
-            return "Hit"
-        else:
-            return "Miss"
+"""
+Set the method for player's guess and update the boards responses.
+(guesses method)
+"""
 
 
+def add_guesses(self, x, y):
     """
-    Add ship to the game board. (add_ship)
+    Parameters:
+    -x (int): The row coordinates of the guess.
+    -y (int): The column coordinates of the guess.
+    Returns:
+    - str: If the guess hits a ship returs "Hit", otherwise "Miss".
     """
-    def add_ship(self, x, y):
-        """
-        Parameters:
-        - x (int): The row coordinates to place the ship.
-        - y (int): The column coordinates to place the ship.
-        - type (str): The type of the ships owner
-        """
-        self.ships.append((x, y))
-        if self.type == "player":
-            self.board[x][y] = "o"
+    self.guesses.append((x, y))
+    self.board[x][y] = "x"
+
+
+if (x, y) in self.ships:
+    self.board[x][y] = "*"
+    return "Hit"
+else:
+    return "Miss"
+
+
+"""
+Add ship to the game board. (add_ship)
+"""
+
+
+def add_ship(self, x, y):
+    """
+    Parameters:
+    - x (int): The row coordinates to place the ship.
+    - y (int): The column coordinates to place the ship.
+    - type (str): The type of the ships owner
+    """
+    self.ships.append((x, y))
+    if self.type == "player":
+        self.board[x][y] = "o"
 
 
 """
@@ -93,8 +99,8 @@ def random_point(board):
     -int: A random integer in the range [0, size].
     """
     while True:
-        x = randint(0, board.size -1)
-        y = randint(0, board.size -1)
+        x = randint(0, board.size - 1)
+        y = randint(0, board.size - 1)
         if (x, y) not in board.guesses:
             return x, y
 
@@ -222,7 +228,7 @@ def new_game():
     scores["player"] = 0
     print("=" * 40)
     print("Welcome to Battleships Game!")
-
+    print("=" * 40)
     print("Want to see how strong your predistions are?")
     print("Come on and try yourself against the computer.")
     print("=" * 40)
@@ -230,13 +236,13 @@ def new_game():
     print("Top left corner is row: 0, col: 0")
 
 
-    while True:
-        print("=" * 40)
-        player_name = input("Please enter your name: ")
-        if player_name:
-            break
-        else:
-            print("Please enter a valid name!")
+while True:
+    print("=" * 40)
+    player_name = input("Please enter your name: ")
+    if player_name:
+        break
+    else:
+        print("Please enter a valid name!")
 
     computer_board = Board(size, num_ships, "Computer", "computer")
     player_board = Board(size, num_ships, player_name, "player")

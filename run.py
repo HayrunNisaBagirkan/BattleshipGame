@@ -150,7 +150,7 @@ def make_guess(board):
                 result = board.add_guesses(x, y)
                 if result == "Hit":
                     print(f"{board.name} Hit!")
-                    scores["board.type"] += 1
+                    scores[board.type] += 1
                 else:
                     print(f"{board.name} Missed!")
                 break
@@ -177,10 +177,12 @@ def play_game(computer_board, player_board):
             )
             print(f"GAME OVER. {player_board.name} is the WINNER")
             break
+
+
         print("Computer's Turn")
-        x, y = random_point(
-            computer_board.size), random_point(computer_board.size)
-        if(x, y) not in computer_board.guesses:
+        while True:
+            x, y = random_point(computer_board.size), random_point(computer_board.size)
+            if(x, y) not in computer_board.guesses:
             break
         result = player_board.add_guesses(x, y)
 
@@ -253,7 +255,7 @@ def new_game():
 while True:
     new_game()
 
-    
+
     while True:
         play_again = input("Do you want to play again? (Y/N): ")
         if play_again.upper() == "Y":

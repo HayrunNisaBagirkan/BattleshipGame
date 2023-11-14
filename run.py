@@ -39,7 +39,7 @@ Print the current state of the game board. (print method)
 """
 
 
-def print(self):
+def print_board(self):
     for row in self.board:
         print(" ".join(row))
 
@@ -61,12 +61,11 @@ def add_guesses(self, x, y):
     self.guesses.append((x, y))
     self.board[x][y] = "x"
 
-
-if (x, y) in self.ships:
-    self.board[x][y] = "*"
-    return "Hit"
-else:
-    return "Miss"
+    if (x, y) in self.ships:
+        self.board[x][y] = "*"
+        return "Hit"
+    else:
+        return "Miss"
 
 
 """
@@ -171,9 +170,9 @@ def play_game(computer_board, player_board):
     while True:
         print("Player's turn")
         print("Player's board")
-        player_board.print()
+        player_board.print_board()
         print("Computer's board")
-        computer_board.print()
+        computer_board.print_board()
         make_guess(computer_board)
 
         if all(

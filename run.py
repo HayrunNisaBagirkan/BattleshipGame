@@ -176,16 +176,6 @@ def play_game(computer_board, player_board):
                 f"Computer's score: {scores['computer']}"
             )
             print(f"GAME OVER. {player_board.name} is the WINNER")
-            while True:
-                play_again = input("Do you want to play again? (Y/N): ")
-                if play_again.upper() == "Y":
-                    new_game()
-                    break
-                elif play_again.upper() == "N":
-                    print("Thank you! See you next time!")
-                    break
-                else:
-                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
         print("Computer's Turn")
         x, y = random_point(
@@ -213,16 +203,6 @@ def play_game(computer_board, player_board):
                 f"Computer's score: {scores['computer']}"
             )
             print("GAME OVER. Computer is the WINNER")
-            while True:
-                play_again = input("Do you want to play again? (Y/N): ")
-                if play_again.upper() == "Y":
-                    new_game()
-                    break
-                elif play_again.upper() == "N":
-                    print("Thank you! See you next time!")
-                    break
-                else:
-                    print("Invalid input.Please enter'Y'for Yes or'N'for No.")
             break
 
 
@@ -260,11 +240,26 @@ def new_game():
     player_board = Board(size, num_ships, player_name, "player")
     populate_board(player_board)
     populate_board(computer_board)
+    print(computer_board.ships)
     print("=" * 40)
 
     input("Press ENTER to START the game")
     print("=" * 40)
     play_game(computer_board, player_board)
 
-
-new_game()
+while True:
+    new_game()
+    """
+    play_again = "Y"
+    """
+    while True:
+        play_again = input("Do you want to play again? (Y/N): ")
+        if play_again.upper() == "Y":
+            break
+        elif play_again.upper() == "N":
+            print("Thank you! See you next time!")
+            break
+        else:
+            print("Invalid input.Please enter'Y'for Yes or'N'for No.")
+    if play_again.upper() != "Y":
+        break

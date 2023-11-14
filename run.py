@@ -149,6 +149,8 @@ def make_guess(board):
                 result = board.add_guesses(x, y)
                 if result == "Hit":
                     print("Player Hit!")
+                    scores["player"] += 1
+                    print("Player's skor:", scores["player"])
                 else:
                     print("Player Missed!")
                 break
@@ -187,6 +189,8 @@ def play_game(computer_board, player_board):
         result = player_board.add_guesses(x, y)
         if result == "Hit":
             print("Computer Hit!")
+            scores["computer"] += 1
+            print("Computer's skor:", scores["computer"])
         else:
             print("Computer Missed!")
 
